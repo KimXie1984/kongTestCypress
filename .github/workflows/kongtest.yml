@@ -44,7 +44,8 @@ jobs:
         node -v
         npm install cypress --save-dev
         ls
-        ./node_modules/.bin/cypress open
+        npx
+        # npx cypress run --spec "path/to/test/file" --testFilter "description"
 
     # - uses: actions/checkout@v4
     
