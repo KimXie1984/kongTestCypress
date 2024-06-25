@@ -21,15 +21,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
   
-    - name: Install Compose
-      uses: KengoTODA/actions-setup-docker-compose@v1
-      with:
-        version: '2.14.2' # the full version of `docker-compose` command
+    # - name: Install Compose
+    #   uses: KengoTODA/actions-setup-docker-compose@v1
+    #   with:
+    #     version: '2.14.2' # the full version of `docker-compose` command
   
-    - run: docker-compose --version
+    # - run: docker-compose --version
 
-    - name: start kong dockers
-      run: docker-compose up -d
+    # - name: start kong dockers
+    #   run: docker-compose up -d
     #- name: check kong-cp started
     # run: |
     #  sleep 30
