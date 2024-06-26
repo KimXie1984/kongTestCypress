@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "cypress": "^13.12.0",
+    "mocha-junit-reporter": "^2.2.1",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.5.1"
+  },
+  "name": "kongcypresstest",
+  "version": "1.0.0",
+  "main": "cypress.config.js",
+  "directories": {
+    "test": "e2e"
+  },
+  "scripts": {
+    "test": "mocha --recursive --require ts-node/register 'cypress/e2e/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/test-results.xml"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
