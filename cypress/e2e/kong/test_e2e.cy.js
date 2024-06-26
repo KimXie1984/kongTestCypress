@@ -8,12 +8,7 @@ context('Actions', () => {
 
     it.only('create a gateway service', () => {
       go_to_page_gateway_service()
-      // click the default workspace)
-      // cy.get('[data-testid="workspace-link-default"]').click()
-      // cy.title().should('include', 'Overview')
-      // // open side bar so that we can click "Gateway Service"
-      // cy.get('.sidebar-menu-toggle').click()
-      // // click "Gateway Services" in side bar
+      // click "Gateway Services" in side bar
       cy.get('[data-testid="sidebar-item-gateway-services"]').click()
       cy.title().should('include', 'Gateway Services')
       // wait for table to load
@@ -24,7 +19,7 @@ context('Actions', () => {
       });
       cy.get('[data-testid="toolbar-add-gateway-service"]').click()
       cy.get('[data-testid="gateway-service-name-input"]').focus().type("test")
-      cy.get('[data-testid="gateway-service-url-input"]').focus().type('http://localhost:8002')
+      cy.get('[data-testid="gateway-service-url-input"]').focus().type('http://test.com')
       cy.get('[data-testid="form-submit"]').click()
     })
 
