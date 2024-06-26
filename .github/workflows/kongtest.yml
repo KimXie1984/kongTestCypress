@@ -48,11 +48,15 @@ jobs:
         npm install cypress --save-dev
         npm install mocha-junit-reporter --save-dev
         npm install ts-node --save-dev
+        npm install eslint-plugin-cypress --save-dev
         npm list
+        
+    - name: Run Cypress Tests
+      run: |
         npm run test
         # npx cypress run --spec "path/to/test/file" --testFilter "description"
         # npx cypress run
-        
+
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
