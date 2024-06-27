@@ -49,6 +49,8 @@ jobs:
         npm install mocha-junit-reporter --save-dev
         npm install ts-node --save-dev
         npm install eslint-plugin-cypress --save-dev
+        npm install --save-dev allure-commandline
+        npm install --save-dev allure-cypress
         npm list
         
     - name: Run Cypress Tests
