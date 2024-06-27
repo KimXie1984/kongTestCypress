@@ -5,6 +5,7 @@ cypress/videos/
 cypress/screenshots/
 cyprese/fixtures/
 cyprese/support/
+allure-results/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "allure-commandline": "^2.29.0",
+    "allure-cypress": "^3.0.0-beta.3",
     "cypress": "^13.12.0",
     "eslint-plugin-cypress": "^3.3.0",
     "mocha-junit-reporter": "^2.2.1",
@@ -9,6 +11,7 @@
     "chai": "^5.1.1",
     "mocha": "^10.5.1"
   },
+  "type": "module",
   "name": "kongcypresstest",
   "version": "1.0.0",
   "main": "cypress.config.js",
@@ -16,7 +19,9 @@
     "test": "e2e"
   },
   "scripts": {
-    "test": "mocha --recursive --require ts-node/register 'cypress/e2e/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/test-results.xml"
+    "test": "mocha --recursive --require ts-node/register 'cypress/e2e/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/test-results.xml",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
