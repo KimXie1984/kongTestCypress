@@ -53,20 +53,18 @@ This is an end-to-end demo of testing project for Kong Gateway Service.
 
 ## Assumptions
 
-- Python, Pytest and Playwright is used for this project
-- This is a fast demo with limited number of cases. If there are a lot of cases, and the execution takes very long time, .e.g several hours or more, we could use pytest-xdist to run tests in parallel to accelerate.
+- Cypress and javascript are used for this project
+- This is a fast demo with limited number of cases. If there are a lot of cases, and the execution takes very long time, .e.g several hours or more.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Prerequisites
 1. Docker installed
-2. Python installed
-3. Pip installed
-4. node.js installed
-5. npm installed
-6. Cypress installed
-7. Allure installed
+2. node.js installed
+3. npm installed
+4. Cypress installed
+5. Allure installed
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
