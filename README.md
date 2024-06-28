@@ -43,21 +43,18 @@ This is an end-to-end demo of testing project for Kong Gateway Service.
 
 ## Considerations
 
-- Each UI page is represented by a class in /test/pages, the class provide methods to perform actions in that page. Tests then use these methods whenever they need to interact with the UI of that page. If the UI changes for a page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
-- Test cases are put in test_*.py file under /test/ui_tests/*. There are parameterized tests and also negative cases in test_gateway_service.py.
-- Tests can be run against a local environment or a remote environment, it is controlled by an environment variable ENV_NAME, please set its value to be the block name in /test/env_config/default_env.ini; by default, it is set to "local"
-- Tests can be run using different browsers, or using a headless or headed mode, they are also controlled by configurations in /test/env_config/default_env.ini
-- After each test run, log files can be found in the root directory with a name pattern '%Y-%m-%d--%H_%M_%S'.log, e.g. 2024-06-21--15_03_17.log
-- Step by step screenshots can be seen in trace.zip in the root directory after each run, please open it in https://trace.playwright.dev/, this can help with debugging failures
-- Tests are naturally grouped by modules, they are also grouped by pytest markers, for example, you can run "pytest -m smoke" to filter all smoke tests to run
-- For a beautiful test report, allure is integrated in GitHub Action, it can be found in https://GitHub.com/KimXie1984/kongtest/actions/workflows/pages/pages-build-deployment
+- Each UI page is represented by a class in cypress/pages, the class provide methods to perform actions in that page. Tests then use these methods whenever they need to interact with the UI of that page. If the UI changes for a page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
+- Test cases are put in cypress/e2e/test_*.cy.js file under /test/ui_tests/*. There are parameterized tests and also negative cases in test_e2e.cy.js.
+- Tests can be run using different browsers, or using a headless or headed mode, they are controlled by command defined in package.json.
+- After each test run, log files are generated in test-results/test-results.xml. If errors occur, screenshots are also generated in cypress/screenshots folder.
+- Step by step screenshots can be seen in generated allure report which is generated from allure-results/* by commmand npx allure generate allure-results and the generated reports are put in allure-report folder and can be opened with browser.
+- For a beautiful test report, allure is integrated in GitHub Action, it can be found inhttps://github.com/KimXie1984/kongTestCypress/actions/workflows/pages/pages-build-deployment.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Assumptions
 
 - Python, Pytest and Playwright is used for this project
 - This is a fast demo with limited number of cases. If there are a lot of cases, and the execution takes very long time, .e.g several hours or more, we could use pytest-xdist to run tests in parallel to accelerate.
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,6 +63,11 @@ This is an end-to-end demo of testing project for Kong Gateway Service.
 1. Docker installed
 2. Python installed
 3. Pip installed
+4. node.js installed
+5. npm installed
+6. Cypress installed
+7. Allure installed
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Installation and Run locally
@@ -78,19 +80,24 @@ This is an end-to-end demo of testing project for Kong Gateway Service.
    ```sh
    docker-compose up -d
    ```
-3. Install dependencies
-   ```sh
-   pip install -r requirements.txt
-   ```
 4. Launch tests
+   Run tests in headless mode
    ```sh
-   pytest
+   npx cypress run
+   ```
+   or 
+   Run tests in chrome browser
+   ```sh
+   npm run e2e:chrome
    ```
 5. Shutdown Kong Gateway Services
    ```sh
    docker-compose down
    ```
-
+6. Generate Allure Report
+   ```sh
+   npx allure generate allure-results
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Trade-offs
