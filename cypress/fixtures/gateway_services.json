@@ -1,0 +1,35 @@
+[
+  {
+    "info":{
+      "name": "gateway-service-url",
+      "tags": "tag1,tag2"
+    },
+    "endpoint":{
+      "url": "http://test.com"
+    },
+    "advanced":{
+      "retries": "3",
+      "connTimeout": "6000",
+      "writeTimeout": "60000",
+      "readTimeout": "60000",
+      "tls-verify": true
+    }
+  },
+  {
+    "info":{
+      "name": "gateway-service-separate-elments",
+      "tags": "tag1,tag2"
+    },
+    "endpoint":{
+      "protocol": "http",
+      "host": "test.com",
+      "port": "80"
+    },
+    "advanced":{
+      "retries": "3",
+      "connTimeout": "6000",
+      "writeTimeout": "60000",
+      "readTimeout": "60000"
+    }
+  }
+]

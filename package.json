@@ -21,7 +21,8 @@
   "scripts": {
     "test": "mocha --recursive --require ts-node/register 'cypress/e2e/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/test-results.xml",
     "cypress:run": "cypress run",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "e2e:chrome": "cypress run --browser chrome"
   },
   "keywords": [],
   "author": "",
