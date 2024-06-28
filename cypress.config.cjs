@@ -18,5 +18,13 @@ module.exports = defineConfig({
     fixturesFolder: "cypress/fixtures",
     slowTestThreshold: 10000,
     screenshotOnRunFailure: true,
+    chromeWebSecurity: false,
+    modifyObstructiveCode: true,
+    experimentalSourceRewriting: true,
+    originDependencies:{
+         "http://localhost:8001": ["https://api.github.com","https://api.github.com/repos/kong/kong"],
+         "http://localhost:8002": ["https://api.github.com","https://api.github.com/repos/kong/kong"],
+        },
+    // "uncaught:exception": "logOnly"
   }
 });

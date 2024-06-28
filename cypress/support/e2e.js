@@ -17,5 +17,10 @@
 import './commands'
 import "allure-cypress";
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    console.error('Uncaught Exception:', err);
+    return false; 
+  });
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

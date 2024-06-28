@@ -6,19 +6,18 @@ class GatewayServicePage {
         this.title = "Gateway Services"
     }
     visit() {
-        console.log(this.url)
         cy.visit(this.url)
+        this.waitForGatewayServiceTable()
     }
 
     waitForGatewayServiceTable() {
-      this.visit()
-      cy.title().should('include', this.title)
-      // wait for table to load
-      cy.get('.k-table-container',{ timeout: 10000 }).should('be.visible');
+        cy.title().should('include', this.title)
+        // wait for table to load
+        cy.get('.k-table-container',{ timeout: 10000 }).scrollIntoView().should('be.visible');
     }
   
     newGatewayService(paras) {
-        this.waitForGatewayServiceTable()
+        this.visit()
         // click on the "New Gateway Service" button
         cy.get('[data-testid$="-gateway-service"]').filter(':visible').click()
         // handle general information input
@@ -70,9 +69,27 @@ class GatewayServicePage {
     }
 
     deleteGatewayService(name) {
-      // @todo implement delete gateway service
-        
-    }
+      this.visit()
+      cy.get('body').then($body =>{
+          if ($body.find('table').length === 0){
+              // table doesn't exist
+          }else{
+              // table exist
+              cy.get('table tbody tr').each(($row) => {
+                  let name = $row.attr('data-testid')
+                  // click ...
+                  cy.wrap($row).find('[data-testid="overflow-actions-button"]').click()
+                  // click delete
+                  cy.wrap($row).find('[data-testid="action-entity-delete"]').click()
+                  // confirm name or id to delete
+                  cy.get('[data-testid="confirmation-input"]').focus().clear().type(name)
+                  cy.get('[data-testid="modal-action-button"]').click()
+                  this.visit()
+              })
+          }
+      })
+  }
+
 
 }
 

@@ -12,8 +12,8 @@ context('kong e2e test', () => {
       gatewayServicePage.deleteGatewayService()
     })
   
-
-    it.only('create a gateway service', () => {
+    Cypress._.times(1, () => {
+      it.only('create a gateway service', () => {
       let paras = {
         info:{
           name: "gateway-service"+ new Date().getTime(),
@@ -54,5 +54,6 @@ context('kong e2e test', () => {
       }
       routePage.newRoute(paras)
     })
-  })
+    })
+})
   

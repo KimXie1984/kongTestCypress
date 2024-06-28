@@ -6,19 +6,19 @@ class RoutePage {
         this.title = "Routes"
     }
     visit() {
-        console.log(this.url)
         cy.visit(this.url)
+        this.waitForRouteTable()
     }
 
     waitForRouteTable() {
-        this.visit()
         cy.title().should('include', this.title)
         // wait for table to load
-        cy.get('.k-table-container',{ timeout: 10000 }).should('be.visible');
+        cy.get('.k-table-container', { timeout: 10000 }).scrollIntoView().should('be.visible');
     }
 
     newRoute(paras){
-        this.waitForRouteTable()
+        console.log("Creating new route")
+        this.visit()
         // click new route button
         cy.get('[data-testid$="-route"]').filter(':visible').click()
         // handle general information input
@@ -45,8 +45,28 @@ class RoutePage {
           }
     }
 
-    deleteRoute(route_name) {
-        // @todo: implement delete route
+    deleteRoute() {
+        this.visit()
+        cy.get('body').then($body =>{
+            if ($body.find('table').length === 0){
+                console.log("Table doesn't exist")
+            }else{
+                console.log("Table exists")
+                cy.get('table tbody tr').each(($row) => {
+                    let name = $row.attr('data-testid')
+                    // click ...
+                    // cy.wrap($row).find('[data-testid="overflow-actions-button"]').click()
+                    cy.wrap($row).find('[data-testid="overflow-actions-button"]').should('be.visible').click()
+                    // click delete
+                    cy.wrap($row).find('[data-testid="action-entity-delete"]').click()
+                    // confirm name or id to delete
+                    cy.get('[data-testid="confirmation-input"]').focus().clear().type(name)
+                    cy.get('[data-testid="modal-action-button"]').click()
+                    // after each delete, wait for table to load again
+                    this.visit()
+                })
+            }
+        })
     }
 
 }
