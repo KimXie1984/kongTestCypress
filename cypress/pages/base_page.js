@@ -33,25 +33,24 @@ class BasePage {
         }
     }
 
-    countTableRows(header="k-table-header-name", ) {
+    countTableRows() {
+        console.log("countTableRows starts")
+        let count = 0
         cy.get('body').then($body =>{
             if ($body.find('table').length === 0){
                 console.log("table find results 0")
                 return 0
             }else{
                 console.log("table find results != 0")
-                let rows = cy.get('table').find('tr',{timeout: this.timeout}).then((rows) => {
-                  let count = rows.length
-                  for (let i = 0; i < rows.length; i++) {
-                    if (rows[i].innerHTML.includes(excludeHeader)){
-                        count--
-                        console.log("Skip the header row")
-                    }
-                  }
-                  return count
+                console.log("Gateway service table exists, start to delete gateway service")
+                cy.get('table').find('tr',{timeout: this.timeout}).then((rows) => {
+                console.log("Gateway service table has " + rows.length + " rows")
                 })
+                return 0
             }
         })
+        cy.wait(1000)
+        return cy.wrap(count)
     }
 
     checkElementExists(selector, retry=5) {
@@ -77,6 +76,20 @@ class BasePage {
             }
         }
         return found
+    }
+
+    checkTableRowsCount(count) {
+        console.log("Start to check table rows count: ", count)
+        this.visit()
+        cy.get('body').then($body =>{
+            console.log("start to check table row count")
+            cy.get('table').find('tr',{timeout: this.timeout}).then((rows) => {
+              // there is an extra row for the header, so we need to add 1 to the expected count
+              if (rows.length !== count + 1){
+                cy.fail("Table has " + rows.length + " rows, but expected elements count " + count)
+              }
+            })
+        })
     }
 }
 

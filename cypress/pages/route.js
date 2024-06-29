@@ -70,6 +70,9 @@ class RoutePage extends BasePage {
         })
     }
 
+    checkRouteCount(count) {
+        this.checkTableRowsCount(count)
+    }
 }
 
 export default RoutePage

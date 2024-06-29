@@ -24,6 +24,8 @@ class GatewayServicePage extends BasePage {
     // }
   
     newGatewayService(paras) {
+        console.log("Start to create gateway service")
+
         this.visit()
         // click on the "New Gateway Service" button
         cy.get('[data-testid$="-gateway-service"]').filter(':visible').click()
@@ -55,6 +57,7 @@ class GatewayServicePage extends BasePage {
         cy.on('window:alert',(t)=>{
           expect(t).to.contains('successfully created!');
         })
+        console.log("Created gateway service")
     }
 
     fillField(paras){
@@ -96,9 +99,8 @@ class GatewayServicePage extends BasePage {
               console.log("Gateway service table doesn't exist")
           }else{
               console.log("Gateway service table exists, start to delete gateway service")
-              let rows = cy.get('table').find('tr',{timeout: this.timeout}).then((rows) => {
+              cy.get('table').find('tr',{timeout: this.timeout}).then((rows) => {
                 console.log("Gateway service table has " + rows.length + " rows")
-                console.log(rows)
                 for (let i = 0; i < rows.length; i++) {
                   if (rows[i].innerHTML.includes('k-table-header-name')){
                     console.log("Skip the header row")
@@ -110,6 +112,7 @@ class GatewayServicePage extends BasePage {
           }
       })
     }
+
     performDeleteFirstRow() {
       this.visit()
       cy.get('table tbody tr').first().then(($row) => {
@@ -129,7 +132,9 @@ class GatewayServicePage extends BasePage {
       })
     }
 
-
+    checkGatewayServiceCount(count) {
+      this.checkTableRowsCount(count)
+    }
 }
 
 export default GatewayServicePage

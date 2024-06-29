@@ -15,9 +15,12 @@ context('kong e2e test', () => {
   
     Cypress._.times(1, () => {
       it.only('create 2 gateway services', () => {
+        let count = 1
         cy.get('@gateway_services').then((gateway_services) => {
           for (let gateway_service of gateway_services) {
             gatewayServicePage.newGatewayService(gateway_service)
+            gatewayServicePage.checkGatewayServiceCount(count)
+            count += 1
           }
         })
       })
@@ -34,6 +37,7 @@ context('kong e2e test', () => {
           },
         };
         gatewayServicePage.newGatewayService(paras)
+        gatewayServicePage.checkTableRowsCount(1)
         paras={
           name: "route"+ new Date().getTime(),
           "service-id": service_id_name,
@@ -42,6 +46,7 @@ context('kong e2e test', () => {
           "paths-input-1" : "/"
         }
         routePage.newRoute(paras)
+        routePage.checkTableRowsCount(1)
       })
       })
 })
