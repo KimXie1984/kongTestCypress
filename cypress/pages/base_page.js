@@ -88,6 +88,7 @@ class BasePage {
               if (rows.length !== count + 1){
                 cy.fail("Table has " + rows.length + " rows, but expected elements count " + count)
               }
+              console.log("check table rows count passed")
             })
         })
     }

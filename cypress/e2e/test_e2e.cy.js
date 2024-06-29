@@ -15,14 +15,18 @@ context('kong e2e test', () => {
   
     Cypress._.times(1, () => {
       it.only('create 2 gateway services', () => {
-        let count = 1
+        let count = 0
         cy.get('@gateway_services').then((gateway_services) => {
+          let newGatewayServiceCalls = [];
           for (let gateway_service of gateway_services) {
-            gatewayServicePage.newGatewayService(gateway_service)
-            gatewayServicePage.checkGatewayServiceCount(count)
-            count += 1
+            newGatewayServiceCalls.push(gatewayServicePage.newGatewayService(gateway_service));
+            count += 1;
           }
+          return Cypress.Promise.all(newGatewayServiceCalls);
         })
+        .then(() => {
+          gatewayServicePage.checkGatewayServiceCount(count);
+        });
       })
 
       it.only('create a route associated with gateway service', () => {
@@ -48,6 +52,6 @@ context('kong e2e test', () => {
         routePage.newRoute(paras)
         routePage.checkTableRowsCount(1)
       })
-      })
+    })
 })
   
