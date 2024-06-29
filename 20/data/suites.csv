@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sat Jun 29 22:44:48 GMT 2024","Sat Jun 29 22:45:08 GMT 2024","19720","kong e2e test","","","","","create a route associated with gateway service",""
+"passed","Sat Jun 29 22:44:30 GMT 2024","Sat Jun 29 22:45:08 GMT 2024","37763","kong e2e test","","","","","create 2 gateway services",""
