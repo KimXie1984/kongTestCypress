@@ -44,11 +44,12 @@ This is an end-to-end demo of testing project for Kong Gateway Service.
 ## Considerations
 
 - Each UI page is represented by a class in cypress/pages, the class provide methods to perform actions in that page. Tests then use these methods whenever they need to interact with the UI of that page. If the UI changes for a page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
-- Test cases are put in cypress/e2e/test_*.cy.js file under /test/ui_tests/*. There are parameterized tests and also negative cases in test_e2e.cy.js.
+- Test cases are put in cypress/e2e/test_\*.cy.js file under /test/ui_tests/*. There are parameterized tests cases in test_e2e.cy.js.
 - Tests can be run using different browsers, or using a headless or headed mode, they are controlled by command defined in package.json.
 - After each test run, log files are generated in test-results/test-results.xml. If errors occur, screenshots are also generated in cypress/screenshots folder.
 - Step by step screenshots can be seen in generated allure report which is generated from allure-results/* by commmand npx allure generate allure-results and the generated reports are put in allure-report folder and can be opened with browser.
 - For a beautiful test report, allure is integrated in GitHub Action, it can be found inhttps://github.com/KimXie1984/kongTestCypress/actions/workflows/pages/pages-build-deployment.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Assumptions
